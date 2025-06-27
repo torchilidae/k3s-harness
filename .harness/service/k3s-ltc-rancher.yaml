@@ -1,0 +1,23 @@
+service:
+  name: k3s-ltc-rancher
+  identifier: k3sltcrancher
+  orgIdentifier: default
+  projectIdentifier: default_project
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: rancher_lb
+            type: K8sManifest
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: k3sharness
+                  gitFetchType: Branch
+                  paths:
+                    - rancher/rancher-lb.yaml
+                  branch: main
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+    type: Kubernetes
