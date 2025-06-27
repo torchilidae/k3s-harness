@@ -20,4 +20,10 @@ service:
                   branch: main
               skipResourceVersioning: false
               enableDeclarativeRollback: false
+      variables:
+        - name: namespace
+          type: String
+          description: ""
+          required: false
+          value: cattle-system
     type: Kubernetes
