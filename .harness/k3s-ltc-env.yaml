@@ -1,0 +1,7 @@
+environment:
+  name: k3s-ltc-env
+  identifier: k3sltc
+  tags: {}
+  type: Production
+  orgIdentifier: default
+  projectIdentifier: default_project
