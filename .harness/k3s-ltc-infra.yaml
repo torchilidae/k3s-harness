@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: k3s-ltc-infra
+  identifier: k3sltcinfra
+  orgIdentifier: default
+  projectIdentifier: default_project
+  environmentRef: k3sltc
+  deploymentType: Kubernetes
+  type: KubernetesDirect
+  spec:
+    connectorRef: k3sltc
+    namespace: <+pipeline.variables.k3s_ltc_namespace>
+    releaseName: release-<+INFRA_KEY_SHORT_ID>
+  allowSimultaneousDeployments: false
