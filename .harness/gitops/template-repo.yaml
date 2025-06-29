@@ -1,0 +1,12 @@
+#Command: harness gitops-repository --file template-repo.yaml apply --agent-identifier k3sharnessargocd
+gitops:
+    name: k3s-harnessGITOPS_REPO_NAME
+    identifier: k3sharnessGITOPSREPONAME
+    projectIdentifier: default_project
+    orgIdentifier: default
+    type: repository
+    repo:
+        repo: GIT_HUB_REPO_YRL
+        type: git
+        connectionType: HTTPS_ANONYMOUS
+    agentIdentifier: AGENT_NAME

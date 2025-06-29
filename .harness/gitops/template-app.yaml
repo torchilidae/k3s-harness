@@ -1,0 +1,23 @@
+#Command: harness gitops-application --file template-app.yaml apply --agent-identifier k3sharnessargocd
+gitops:
+  name: k3s-harnessGITOPS_APP_NAME
+  projectIdentifier: default_project
+  orgIdentifier: default
+  type: application
+  application:
+    metadata:
+      clusterName: gitops_cluster
+      labels:
+        harness.io/serviceRef: ""
+        harness.io/envRef: ""
+    spec:
+      source:
+        repoURL: GIT_HUB_REPO_YRL
+        path: GIT_HUB_REPO_PATH
+        targetRevision: main
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+  agentIdentifier: AGENT_NAME
+  clusterIdentifier: gitopscluster
+  repoIdentifier: gitopsrepo
