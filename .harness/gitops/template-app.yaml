@@ -1,6 +1,6 @@
 #Command: harness gitops-application --file template-app.yaml apply --agent-identifier k3sharnessargocd
 gitops:
-  name: k3s-harnessGITOPS_APP_NAME
+  name: k3s-harness-GITOPS_APP_NAME
   projectIdentifier: default_project
   orgIdentifier: default
   agentIdentifier: k3sharnessargocd
@@ -21,3 +21,19 @@ gitops:
       destination:
         server: https://kubernetes.default.svc
         namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PrunePropagationPolicy=foreground
+          - CreateNamespace=true
+          - Validate=true
+          - PruneLast=false
+          - ApplyOutOfSyncOnly=false
+          - FluxSubsystem=false
+          - AutoCreateFluxResources=false
+          - Replace=false
+          - retry=false
+          - applicationsSync=undefined
+          - preserveResourcesOnDeletion=false
