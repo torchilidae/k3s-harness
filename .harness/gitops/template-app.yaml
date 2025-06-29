@@ -3,10 +3,13 @@ gitops:
   name: k3s-harnessGITOPS_APP_NAME
   projectIdentifier: default_project
   orgIdentifier: default
+  agentIdentifier: k3sharnessargocd
+  clusterIdentifier: k3sltccluster
+  repoIdentifier: k3sharness
   type: application
   application:
     metadata:
-      clusterName: gitops_cluster
+      clusterName: k3s-ltc-cluster
       labels:
         harness.io/serviceRef: ""
         harness.io/envRef: ""
@@ -18,6 +21,3 @@ gitops:
       destination:
         server: https://kubernetes.default.svc
         namespace: default
-  agentIdentifier: AGENT_NAME
-  clusterIdentifier: gitopscluster
-  repoIdentifier: gitopsrepo
