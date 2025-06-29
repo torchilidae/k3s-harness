@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1  
+kind: ApplicationSet  
+metadata:  
+  name: argocd-main
+spec:   
+  template:  
+    metadata:  
+      name: 'argocd-main'  
+    spec:  
+      project: 2b99cceb  
+      source:  
+        repoURL: https://github.com/torchilidae/k3s-harness.git
+        targetRevision: HEAD  
+        path: ""  
+      destination:  
+        server: 'https://kubernetes.default.svc'  
+        namespace: 'default'  
+      syncPolicy:  
+        syncOptions:
+        - CreateNamespace=true
