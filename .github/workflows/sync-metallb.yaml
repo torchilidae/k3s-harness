@@ -49,5 +49,10 @@ jobs:
       - name: Commit and push
         run: |
           git add network/metal-lb/metallb-native.yaml
-          git commit -m "Auto-sync: Update MetalLB manifest"
-          git push
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-sync: Update MetalLB manifest"
+            git push
+          fi
