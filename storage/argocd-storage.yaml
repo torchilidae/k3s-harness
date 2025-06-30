@@ -1,16 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd-main
+  name: argocd-storage
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - name: k3s-main-network
-        path: network
-      - name: k3s-main-storage
-        path: storage
+      - name: k3s-storage-longhorn
+        path: longhorn
   template:
     metadata:
       name: '{{name}}'
@@ -22,7 +20,7 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'default'
+        namespace: '{{path}}'
       syncPolicy:
         automated:
           prune: true
