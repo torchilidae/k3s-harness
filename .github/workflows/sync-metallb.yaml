@@ -2,18 +2,17 @@ name: Sync MetalLB Manifest
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 8 * * *'  # Daily at 1:00 AM MST
   workflow_dispatch:
 
 jobs:
-  fetch-metallb:
-    name: Fetch latest metallb-native.yaml
+  sync-metallb:
+    name: Fetch, detect changes, and commit MetalLB manifest
     runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.diffcheck.outputs.changed }}
+
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Create target folder
         run: mkdir -p network/metal-lb
@@ -23,7 +22,7 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/metallb/metallb/main/config/manifests/metallb-native.yaml \
             -o network/metal-lb/metallb-native.yaml
 
-      - name: Check for changes
+      - name: Check if file changed
         id: diffcheck
         run: |
           if git diff --quiet network/metal-lb/metallb-native.yaml; then
@@ -32,27 +31,15 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-  commit-and-push:
-    name: Commit updated file
-    needs: fetch-metallb
-    if: needs.fetch-metallb.outputs.changed == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Configure Git
+        if: steps.diffcheck.outputs.changed == 'true'
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
       - name: Commit and push
+        if: steps.diffcheck.outputs.changed == 'true'
         run: |
           git add network/metal-lb/metallb-native.yaml
-
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Auto-sync: Update MetalLB manifest"
-            git push
-          fi
+          git commit -m "Auto-sync: Update MetalLB manifest"
+          git push
