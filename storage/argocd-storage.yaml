@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - name: k3s-storage-longhorn
-        path: longhorn
+        path: storage/longhorn
   template:
     metadata:
       name: '{{name}}'
