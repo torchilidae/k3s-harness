@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd-network
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: k3s-network-kubevip
+        path: network/kube-vip
+        namespace: kube-system
+      - name: k3s-network-metallb
+        path: network/metal-lb
+        namespace: metallb-system
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: 2b99cceb
+      source:
+        repoURL: https://github.com/torchilidae/k3s-harness.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+
