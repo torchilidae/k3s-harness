@@ -9,6 +9,7 @@ spec:
       elements:
       - name: k3s-storage-longhorn
         path: storage/longhorn
+        namespace: longhorn-system
   template:
     metadata:
       name: '{{name}}'
@@ -20,7 +21,7 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{path}}'
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           prune: true
