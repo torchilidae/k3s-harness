@@ -5,4 +5,4 @@ resources:
   - metal-lb/metallb-native.yaml
 
   - kube-vip/kube-vip-daemonset.yaml
-  - kube-vip/kube-vip-svc.yaml
+  - kube-vip/kube-vip-rbac.yaml
