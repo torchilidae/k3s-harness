@@ -2,23 +2,21 @@ name: Sync MetalLB Manifest
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # Daily at 1:00 AM MST
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
-  sync-metallb:
-    name: Fetch, detect changes, and commit MetalLB manifest
+  metallb-sync:
+    name: MetalLB sync check
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create target folder
-        run: mkdir -p network/metal-lb
-
-      - name: Download MetalLB manifest
+      - name: Check target folder and Download latest MetalLB manifest
         run: |
+          mkdir -p network/metal-lb
           curl -sSL https://raw.githubusercontent.com/metallb/metallb/main/config/manifests/metallb-native.yaml \
             -o network/metal-lb/metallb-native.yaml
 
@@ -31,15 +29,11 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Configure Git
+      - name: Commit and push if file changed
         if: steps.diffcheck.outputs.changed == 'true'
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-
-      - name: Commit and push
-        if: steps.diffcheck.outputs.changed == 'true'
-        run: |
           git add network/metal-lb/metallb-native.yaml
           git commit -m "Auto-sync: Update MetalLB manifest"
           git push
