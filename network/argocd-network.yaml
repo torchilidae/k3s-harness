@@ -13,6 +13,9 @@ spec:
       - name: k3s-network-metallb
         path: network/metal-lb
         namespace: metallb-system
+      - name: k3s-network-certmanager
+        path: network/cert-manager
+        namespace: cert-manager
   template:
     metadata:
       name: '{{name}}'
@@ -31,4 +34,3 @@ spec:
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
-
