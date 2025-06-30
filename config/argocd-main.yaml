@@ -1,25 +1,25 @@
-apiVersion: argoproj.io/v1alpha1  
-kind: ApplicationSet  
-metadata:  
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
   name: argocd-main
 spec:
   generators:
-    - list:
-        elements:
-          - name: network
-            path: network
+  - list:
+      elements:
+      - name: network
+        path: network
   template:
-    metadata:  
-      name: '{{name}}'  
-    spec:  
-      project: 2b99cceb  
-      source:  
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: 2b99cceb
+      source:
         repoURL: https://github.com/torchilidae/k3s-harness.git
-        targetRevision: HEAD  
-        path: '{{path}}' 
-      destination:  
-        server: 'https://kubernetes.default.svc'  
-        namespace: 'default'  
-      syncPolicy:  
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'default'
+      syncPolicy:
         syncOptions:
         - CreateNamespace=true
