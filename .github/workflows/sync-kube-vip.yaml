@@ -1,0 +1,60 @@
+name: Sync kube-vip DaemonSet
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # daily at 1 AM MST (8 AM UTC)
+  workflow_dispatch:
+
+jobs:
+  generate-kube-vip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set environment variables
+        run: |
+          echo "VIP=10.10.1.4" >> $GITHUB_ENV
+          echo "INTERFACE=enp0s31f6" >> $GITHUB_ENV
+
+      - name: Get latest kube-vip version
+        id: get_version
+        run: |
+          KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")
+          echo "KVVERSION=$KVVERSION" >> $GITHUB_ENV
+          echo "Latest kube-vip version: $KVVERSION"
+
+      - name: Generate kube-vip daemonset manifest
+        run: |
+          mkdir -p network/kube-vip
+          docker run --rm --network host \
+            ghcr.io/kube-vip/kube-vip:${KVVERSION} \
+            manifest daemonset \
+            --interface $INTERFACE \
+            --address $VIP \
+            --inCluster \
+            --taint \
+            --controlplane \
+            --services \
+            --arp \
+            --leaderElection > network/kube-vip/kube-vip-daemonset.yaml
+
+      - name: Check if manifest changed
+        id: diffcheck
+        run: |
+          git diff --exit-code network/kube-vip/kube-vip-daemonset.yaml || echo "changed=true" >> $GITHUB_OUTPUT
+          if [[ $(git status --porcelain) ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if changed
+        if: steps.diffcheck.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add network/kube-vip/kube-vip-daemonset.yaml
+          git commit -m "Auto-sync: Update kube-vip daemonset manifest"
+          git push
