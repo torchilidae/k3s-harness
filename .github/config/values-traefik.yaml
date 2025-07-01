@@ -4,6 +4,8 @@ ingressRoute:
     matchRule: Host(`traefik.tsphotoclicks.net`)
     entryPoints:
       - websecure
+    tls:
+      secretName: traefik-internal-secret
 
 providers:
   kubernetesGateway:

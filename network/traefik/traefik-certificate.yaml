@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-internal-certificate
+  namespace: traefik
+spec:
+  secretName: traefik-internal-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - traefik.tsphotoclicks.net
