@@ -29,6 +29,7 @@ jobs:
           helm repo add traefik https://traefik.github.io/charts
           helm repo update
           helm template traefik traefik/traefik \
+            --include-crds \
             --namespace traefik \
             --values .github/config/values-traefik.yaml \
             > network/traefik/traefik.yaml
