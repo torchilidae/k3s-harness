@@ -3,7 +3,6 @@ ingressRoute:
     enabled: true
     matchRule: Host(`traefik.tsphotoclicks.net`)
     entryPoints:
-      - web
       - websecure
 
 providers:
