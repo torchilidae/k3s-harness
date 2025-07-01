@@ -16,6 +16,9 @@ spec:
       - name: k3s-network-certmanager
         path: network/cert-manager
         namespace: cert-manager
+      - name: k3s-network-traefik
+        path: network/traefik
+        namespace: traefik
   template:
     metadata:
       name: '{{name}}'
