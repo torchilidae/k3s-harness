@@ -16344,6 +16344,9 @@ spec:
           - "--providers.kubernetesgateway"
           - "--providers.kubernetesgateway.statusaddress.service.name=traefik"
           - "--providers.kubernetesgateway.statusaddress.service.namespace=traefik"
+          - "--entryPoints.web.http.redirections.entryPoint.to=:443"
+          - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
+          - "--entryPoints.web.http.redirections.entryPoint.permanent=true"
           - "--entryPoints.websecure.http.tls=true"
           - "--log.level=INFO"
           
