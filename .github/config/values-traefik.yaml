@@ -1,0 +1,17 @@
+service:
+  type: LoadBalancer
+
+ports:
+  web:
+    redirectTo: websecure
+  websecure:
+    tls:
+      enabled: true
+
+ingressRoute:
+  dashboard:
+    enabled: true
+
+additionalArguments:
+  - "--api.dashboard=true"
+  # - "--log.level=INFO"

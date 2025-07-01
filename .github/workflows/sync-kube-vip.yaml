@@ -2,7 +2,7 @@ name: Sync kube-vip DaemonSet
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # daily at 1 AM MST (8 AM UTC)
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
@@ -17,10 +17,6 @@ jobs:
         run: |
           echo "VIP=10.10.1.4" >> $GITHUB_ENV
           echo "INTERFACE=enp0s31f6" >> $GITHUB_ENV
-
-      - name: Get latest kube-vip version
-        id: get_version
-        run: |
           KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")
           echo "KVVERSION=$KVVERSION" >> $GITHUB_ENV
           echo "Latest kube-vip version: $KVVERSION"

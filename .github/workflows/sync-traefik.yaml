@@ -1,0 +1,52 @@
+name: Sync traefik Helm chart
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/config/values-traefik.yaml
+
+jobs:
+  render-traefik:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.14.0
+
+      - name: Download latest Helm chart
+        run: |
+          mkdir -p network/traefik
+          helm repo add traefik https://traefik.github.io/charts
+          helm repo update
+          helm template traefik traefik/traefik \
+            --namespace traefik \
+            --values .github/config/values-traefik.yaml \
+            > network/traefik/traefik.yaml
+
+      - name: Check if file changed
+        id: diffcheck
+        run: |
+          if git diff --quiet network/traefik/traefik.yaml; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if file changed
+        if: steps.diffcheck.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add network/traefik/traefik.yaml
+          git commit -m "Auto-sync: Update Traefik manifest"
+          git push
