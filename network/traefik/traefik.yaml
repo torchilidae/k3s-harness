@@ -16077,7 +16077,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
   annotations:
 automountServiceAccountToken: false
@@ -16090,7 +16090,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups:
@@ -16198,7 +16198,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -16218,7 +16218,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
   annotations:
 spec:
@@ -16245,7 +16245,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
   annotations:
 spec:
@@ -16269,7 +16269,7 @@ spec:
       labels:
         app.kubernetes.io/name: traefik
         app.kubernetes.io/instance: traefik-traefik
-        helm.sh/chart: traefik-36.2.0
+        helm.sh/chart: traefik-36.3.0
         app.kubernetes.io/managed-by: Helm
     spec:
       serviceAccountName: traefik
@@ -16277,7 +16277,7 @@ spec:
       terminationGracePeriodSeconds: 60
       hostNetwork: false
       containers:
-      - image: docker.io/traefik:v3.4.1
+      - image: docker.io/traefik:v3.4.3
         imagePullPolicy: IfNotPresent
         name: traefik
         resources:
@@ -16375,7 +16375,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
   name: traefik
 spec:
@@ -16390,7 +16390,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
 spec:
   gatewayClassName: traefik
@@ -16407,7 +16407,7 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
 spec:
   controllerName: traefik.io/gateway-controller
@@ -16421,11 +16421,10 @@ metadata:
   labels:
     app.kubernetes.io/name: traefik
     app.kubernetes.io/instance: traefik-traefik
-    helm.sh/chart: traefik-36.2.0
+    helm.sh/chart: traefik-36.3.0
     app.kubernetes.io/managed-by: Helm
 spec:
   entryPoints:
-  - web
   - websecure
   routes:
   - match: Host(`traefik.tsphotoclicks.net`)
