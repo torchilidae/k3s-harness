@@ -1,26 +1,38 @@
-name: Sync Cert Manager Manifest
+name: Sync Cert Manager Helm chart
 
 on:
   schedule:
     - cron: '0 8 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/config/values-cert-manager.yaml
 
 jobs:
-  cert-manager-sync:
-    name: Cert Manager sync check
+  render-cert-manager:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download latest Cert Manager manifest
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+
+      - name: Download latest Helm chart
         run: |
           mkdir -p network/cert-manager
-          version=$(curl -s https://api.github.com/repos/cert-manager/cert-manager/releases/latest | jq -r .tag_name)
-          echo "Latest version: $version"
-          curl -sSL https://github.com/cert-manager/cert-manager/releases/download/$version/cert-manager.yaml \
-            -o network/cert-manager/cert-manager.yaml
+          helm repo add jetstack https://charts.jetstack.io
+          helm repo update
+          helm template cert-manager jetstack/cert-manager \
+            --include-crds \
+            --namespace cert-manager \
+            --values .github/config/values-cert-manager.yaml \
+            > network/cert-manager/cert-manager.yaml
 
       - name: Check if file changed
         id: diffcheck
