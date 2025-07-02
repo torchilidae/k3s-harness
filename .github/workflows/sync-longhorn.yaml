@@ -1,24 +1,38 @@
-name: Sync Longhorn Manifest
+name: Sync Longhorn Helm chart
 
 on:
   schedule:
     - cron: '0 8 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/config/values-longhorn.yaml
 
 jobs:
-  longhorn-sync:
-    name: Longhorn sync check
+  render-longhorn:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Check target folder and Download latest Longhorn manifest
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+
+      - name: Download latest Helm chart
         run: |
-          mkdir -p storage/longhorn
-          curl -sSL https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml \
-            -o storage/longhorn/longhorn.yaml
+          mkdir -p network/traefik
+          helm repo add longhorn https://charts.longhorn.io
+          helm repo update
+          helm template longhorn longhorn/longhorn \
+            --include-crds \
+            --namespace longhorn-system \
+            --values .github/config/values-longhorn.yaml \
+            > storage/longhorn/longhorn.yaml
 
       - name: Check if file changed
         id: diffcheck
