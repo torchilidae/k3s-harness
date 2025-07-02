@@ -1,0 +1,49 @@
+provider: cloudflare
+
+logLevel: info
+interval: 1m
+policy: sync
+registry: txt
+txtOwnerId: external-dns
+txtPrefix: external-dns-
+txtSuffix: ""
+
+sources:
+  - ingress
+
+# Watch all namespaces
+namespace: ""
+
+# Optional: restrict to specific zones
+# domainFilters:
+#   - example.com
+
+serviceAccount:
+  create: true
+  name: external-dns
+
+rbac:
+  create: true
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 50Mi
+  limits:
+    cpu: 100m
+    memory: 100Mi
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+
+service:
+  enabled: false
+
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: cloudflare-api-token
+        key: api-token
