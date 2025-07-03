@@ -16430,7 +16430,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-  - match: Host(`traefik.tsphotoclicks.net`)
+  - match: Host(`traefik.ltc.tsphotoclicks.net`)
     kind: Rule
     services:
       - kind: TraefikService
