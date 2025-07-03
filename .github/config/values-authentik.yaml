@@ -1,0 +1,22 @@
+authentik:
+  secret_key: "pCMqF6IpaEpqWBwTDQ9MwkmTCVBO5LlHyXxfZYTPW0h6BCa6+XvgAGzAM1Da0sok1+L5YwqZA2OcVzLf"
+  postgresql:
+    password: "vZSCpnntdt1GqtouUB4D2SqGpvcSfXjnYAxH3CWsKX3RrxrLy84WHcEAAH+gCNXq7zry1SR7HrAFzuOc"
+
+server:
+  ingress:
+    # Specify kubernetes ingress controller class name
+    ingressClassName: traefik
+    enabled: true
+    hosts:
+      - authentik.ltc.tsphotoclicks.net
+    tls:
+      secretName: authentik-internal-secret
+
+
+postgresql:
+  enabled: true
+  auth:
+    password: "vZSCpnntdt1GqtouUB4D2SqGpvcSfXjnYAxH3CWsKX3RrxrLy84WHcEAAH+gCNXq7zry1SR7HrAFzuOc"
+redis:
+  enabled: true

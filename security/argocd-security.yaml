@@ -1,20 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd-main
+  name: argocd-security
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - name: k3s-main-network
-        path: network
-      - name: k3s-main-storage
-        path: storage
-      - name: k3s-main-monitor
-        path: monitor
-      - name: k3s-main-security
-        path: security
+      - name: k3s-security-authentik
+        path: security/authentik
+        namespace: authentik
   template:
     metadata:
       name: '{{name}}'
@@ -26,11 +21,10 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'default'
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
-
