@@ -10,4 +10,5 @@ spec:
     kind: ClusterIssuer
   commonName: ltc.tsphotoclicks.net
   dnsNames:
+    - "ltc.tsphotoclicks.net"
     - "*.ltc.tsphotoclicks.net"
