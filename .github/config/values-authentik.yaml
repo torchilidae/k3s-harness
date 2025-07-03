@@ -11,8 +11,10 @@ server:
     hosts:
       - authentik.ltc.tsphotoclicks.net
     tls:
-      secretName: authentik-internal-secret
-
+      - secretName: authentik-internal-secret
+        hosts:
+          - "ltc.tsphotoclicks.net"
+          - "*.ltc.tsphotoclicks.net"
 
 postgresql:
   enabled: true
