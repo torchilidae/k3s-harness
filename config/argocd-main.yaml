@@ -11,6 +11,8 @@ spec:
         path: network
       - name: k3s-main-storage
         path: storage
+      - name: k3s-main-monitor
+        path: monitor
   template:
     metadata:
       name: '{{name}}'
