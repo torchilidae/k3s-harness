@@ -1,0 +1,41 @@
+name: Update Uptime Kuma Version
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  uptimekuma-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch latest Uptime Kuma release from GitHub
+        id: get_latest
+        run: |
+          latest_tag=$(curl -s https://api.github.com/repos/louislam/uptime-kuma/releases/latest \
+            | jq -r .tag_name | sed 's/^v//')
+          echo "Latest tag: $latest_tag" && echo "tag=$latest_tag" >> $GITHUB_OUTPUT
+          sed -i "s|image: louislam/uptime-kuma:.*|image: louislam/uptime-kuma:${latest_tag}|" \
+            monitor/uptimekuma/uptimekuma.yaml
+
+      - name: Check if file changed
+        id: diffcheck
+        run: |
+          if git diff --quiet monitor/uptimekuma/uptimekuma.yaml; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if file changed
+        if: steps.diffcheck.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add monitor/uptimekuma/uptimekuma.yaml
+          git commit -m "Auto-update: Update Uptime Kuma to v${{ steps.get_latest.outputs.tag }}"
+          git push
