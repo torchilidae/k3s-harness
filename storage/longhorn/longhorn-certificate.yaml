@@ -8,5 +8,6 @@ spec:
   issuerRef:
     name: cloudflare-clusterissuer
     kind: ClusterIssuer
+  commonName: ltc.tsphotoclicks.net
   dnsNames:
-    - longhorn.tsphotoclicks.net
+    - "*.ltc.tsphotoclicks.net"

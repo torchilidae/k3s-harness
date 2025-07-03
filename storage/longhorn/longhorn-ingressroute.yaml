@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`longhorn.tsphotoclicks.net`)
+      match: Host(`longhorn.ltc.tsphotoclicks.net`)
       services:
         - name: longhorn-frontend
           port: 80
