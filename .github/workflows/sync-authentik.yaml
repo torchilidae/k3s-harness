@@ -34,10 +34,10 @@ jobs:
             --values .github/config/values-authentik.yaml \
             > security/authentik/authentik.yaml
 
-      - name: Check if file changed
+      - name: Check if file changed (excluding only postgres-password)
         id: diffcheck
         run: |
-          if git diff --quiet security/authentik/authentik.yaml; then
+          if git diff security/authentik/authentik.yaml | awk '/^[+-]/ && !/postgres-password/ { exit 1 }'; then         
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -50,4 +50,5 @@ jobs:
           git config user.email "actions@github.com"
           git add security/authentik/authentik.yaml
           git commit -m "Auto-sync: Update Authentik manifest"
+          git pull --rebase
           git push

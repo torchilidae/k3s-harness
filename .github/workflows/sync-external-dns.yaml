@@ -50,4 +50,5 @@ jobs:
           git config user.email "actions@github.com"
           git add network/external-dns/external-dns.yaml
           git commit -m "Auto-sync: Update ExternalDNS manifest"
+          git pull --rebase
           git push

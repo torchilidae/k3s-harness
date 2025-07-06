@@ -50,4 +50,5 @@ jobs:
           git config user.email "actions@github.com"
           git add storage/longhorn/longhorn.yaml
           git commit -m "Auto-sync: Update Longhorn manifest"
+          git pull --rebase
           git push

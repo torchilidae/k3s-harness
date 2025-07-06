@@ -36,4 +36,5 @@ jobs:
           git config user.email "actions@github.com"
           git add network/metal-lb/metallb-native.yaml
           git commit -m "Auto-sync: Update MetalLB manifest"
+          git pull --rebase
           git push
