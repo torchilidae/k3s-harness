@@ -13,7 +13,5 @@ spec:
         - name: kubernetes-dashboard-kong-proxy
           port: 443
           scheme: https
-          tls:
-            insecureSkipVerify: true
   tls:
     secretName: kubernetes-dashboard-internal-secret
