@@ -10,6 +10,9 @@ spec:
       - name: k3s-monitor-uptimekuma
         path: monitor/uptimekuma
         namespace: uptimekuma
+      - name: k3s-monitor-kubernetesdashboard
+        path: monitor/kubernetes-dashboard
+        namespace: kubernetes-dashboard
   template:
     metadata:
       name: '{{name}}'
