@@ -37,7 +37,7 @@ jobs:
       - name: Check if file changed (excluding only postgres-password)
         id: diffcheck
         run: |
-          if git diff security/authentik/authentik.yaml | awk '/^[+-]/ && !/postgres-password/ { exit 1 }'; then         
+          if git diff security/authentik/authentik.yaml | grep -v 'postgres-password' | grep -q '^[+-]'; then 
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
