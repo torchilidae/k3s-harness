@@ -16436,5 +16436,8 @@ spec:
     services:
       - kind: TraefikService
         name: api@internal
+    middlewares:
+      - name: authentik-middleware
+        namespace: authentik
   tls:
     secretName: traefik-internal-secret
