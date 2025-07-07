@@ -10,6 +10,9 @@ ingressRoute:
 providers:
   kubernetesGateway:
     enabled: true
+  kubernetesCRD:
+    allowCrossNamespace: true
+
 gateway:
   namespacePolicy: All
 

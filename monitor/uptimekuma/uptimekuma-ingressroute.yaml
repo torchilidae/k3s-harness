@@ -9,6 +9,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`uptimekuma.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
       services:
         - name: uptimekuma
           port: 3001
