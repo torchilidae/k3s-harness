@@ -13,5 +13,14 @@ spec:
         - name: kubernetes-dashboard-kong-proxy
           port: 443
           scheme: https
+          serversTransport: kubernetes-dashboard-transport
   tls:
     secretName: kubernetes-dashboard-internal-secret
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: kubernetes-dashboard-transport
+  namespace: kubernetes-dashboard
+spec:
+  insecureSkipVerify: true
