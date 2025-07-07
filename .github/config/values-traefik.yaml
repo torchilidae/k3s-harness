@@ -4,6 +4,9 @@ ingressRoute:
     matchRule: Host(`traefik.ltc.tsphotoclicks.net`)
     entryPoints:
       - websecure
+    middlewares:
+      - name: authentik-middleware
+        namespace: authentik
     tls:
       secretName: traefik-internal-secret
 

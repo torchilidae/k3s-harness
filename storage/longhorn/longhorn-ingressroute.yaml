@@ -9,6 +9,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`longhorn.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
       services:
         - name: longhorn-frontend
           port: 80
