@@ -17,7 +17,7 @@ spec:
   tls:
     secretName: kubernetes-dashboard-internal-secret
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
 metadata:
   name: kubernetes-dashboard-transport
