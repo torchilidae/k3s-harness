@@ -9,8 +9,6 @@ spec:
       elements:
       - name: k3s-main-network
         path: network
-      - name: k3s-main-storage
-        path: storage
       - name: k3s-main-monitor
         path: monitor
       - name: k3s-main-security
