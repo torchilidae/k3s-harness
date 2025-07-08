@@ -18,9 +18,14 @@ jobs:
         run: |
           latest_tag=$(curl -s https://api.github.com/repos/louislam/uptime-kuma/releases/latest \
             | jq -r .tag_name | sed 's/^v//')
-          echo "Latest tag: $latest_tag" && echo "tag=$latest_tag" >> $GITHUB_OUTPUT
-          sed -i "s|image: louislam/uptime-kuma:.*|image: louislam/uptime-kuma:${latest_tag}|" \
+          
+          if [ -n "$latest_tag" ]; then
+            echo "Latest tag: $latest_tag" && echo "tag=$latest_tag" >> $GITHUB_OUTPUT
+            sed -i "s|image: louislam/uptime-kuma:.*|image: louislam/uptime-kuma:${latest_tag}|" \
             monitor/uptimekuma/uptimekuma.yaml
+          else
+            echo "Failed to fetch latest tag skipping update."
+          fi
 
       - name: Check if file changed
         id: diffcheck
