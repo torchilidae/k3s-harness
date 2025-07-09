@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: qbittorrent
+  labels:
+    app: qbittorrent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: qbittorrent
+        image: linuxserver/qbittorrent
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+          - name: qbittorrent-config
+            mountPath: /config
+          - name: qbittorrent-downloads
+            mountPath: /downloads
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 750m
+            memory: 2Gi
+
+      - name: gluetun
+        image: qmcgaw/gluetun
+        env:
+        - name: VPN_TYPE
+          value: "openvpn"
+        - name: OPENVPN_USER
+          valueFrom:
+            secretKeyRef:
+              name: protonvpn-secrets
+              key: PROTONVPN_USER
+        - name: OPENVPN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: protonvpn-secrets
+              key: PROTONVPN_PASSWORD
+        - name: UPDATER_PERIOD
+          value: "24h"
+        - name: SERVER_COUNTRIES
+          value: "United States"
+        - name: VPN_SERVICE_PROVIDER
+          value: "nordvpn"
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        volumeMounts:
+        - name: gluetun-config
+          mountPath: /gluetun
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - ping -c 1 www.google.com || exit 1
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          timeoutSeconds: 20
+          failureThreshold: 5
+
+      volumes:
+        - name: qbittorrent-config
+          persistentVolumeClaim:
+            claimName: qbittorrent-pvc
+        - name: qbittorrent-downloads
+          persistentVolumeClaim:
+            claimName: qbittorrent-download-pvc
+        - name: gluetun-config
+          persistentVolumeClaim:
+            claimName: gluetun-pvc

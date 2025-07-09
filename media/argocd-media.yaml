@@ -10,6 +10,9 @@ spec:
       - name: k3s-media-emby
         path: media/emby
         namespace: emby
+      - name: k3s-media-qbittorrent
+        path: media/qbittorrent
+        namespace: qbittorrent
   template:
     metadata:
       name: '{{name}}'
