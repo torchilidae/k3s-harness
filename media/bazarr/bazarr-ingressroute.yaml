@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bazarr-ingressroute
+  namespace: bazarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`bazarr.ltc.tsphotoclicks.net`)
+      services:
+        - name: bazarr
+          port: 6767
+  tls:
+    secretName: bazarr-internal-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bazarr
+  namespace: bazarr
+spec:
+  selector:
+    app: bazarr
+  ports:
+    - port: 6767
+      targetPort: 6767
