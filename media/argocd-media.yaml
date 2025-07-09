@@ -1,20 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd-main
+  name: argocd-media
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - name: k3s-main-network
-        path: network
-      - name: k3s-main-monitor
-        path: monitor
-      - name: k3s-main-security
-        path: security
-      - name: k3s-main-media
-        path: media
+      - name: k3s-media-emby
+        path: media/emby
+        namespace: emby
   template:
     metadata:
       name: '{{name}}'
@@ -26,7 +21,7 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'default'
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           prune: true
