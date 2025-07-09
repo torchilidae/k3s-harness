@@ -42,13 +42,13 @@ spec:
         - name: OPENVPN_USER
           valueFrom:
             secretKeyRef:
-              name: protonvpn-secrets
-              key: PROTONVPN_USER
+              name: openvpn-secrets
+              key: OPENVPN_USER
         - name: OPENVPN_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: protonvpn-secrets
-              key: PROTONVPN_PASSWORD
+              name: openvpn-secrets
+              key: OPENVPN_PASSWORD
         - name: UPDATER_PERIOD
           value: "24h"
         - name: SERVER_COUNTRIES
