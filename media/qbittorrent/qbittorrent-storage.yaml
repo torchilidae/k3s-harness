@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: qbittorrent-config
+  name: qbittorrent-pvc
   namespace: qbittorrent
 spec:
   accessModes:
@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: qbittorrent-downloads
+  name: qbittorrent-download-pvc
   namespace: qbittorrent
 spec:
   accessModes:
@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gluetun-config
+  name: gluetun-pvc
   namespace: qbittorrent
 spec:
   accessModes:
