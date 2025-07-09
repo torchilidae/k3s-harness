@@ -65,11 +65,9 @@ spec:
         - name: gluetun-config
           mountPath: /gluetun
         livenessProbe:
-          exec:
-            command:
-              - sh
-              - -c
-              - ping -c 1 1.1.1.1 || exit 1
+          httpGet:
+            path: /health
+            port: 8000
           initialDelaySeconds: 30
           periodSeconds: 60
           timeoutSeconds: 20
