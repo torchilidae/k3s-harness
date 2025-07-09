@@ -20,7 +20,7 @@ spec:
   capacity:
     storage: 1Ti
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   nfs:
     server: ds.tsphotoclicks.net
     path: /volume1/video/Movie
@@ -46,11 +46,12 @@ metadata:
   namespace: emby
 spec:
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
   volumeName: emby-tvshows-pv
+  storageClassName: ""
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -59,8 +60,9 @@ metadata:
   namespace: emby
 spec:
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
   volumeName: emby-movies-pv
+  storageClassName: ""
