@@ -63,8 +63,6 @@ spec:
             add:
               - NET_ADMIN
         volumeMounts:
-        - name: gluetun-config
-          mountPath: /gluetun
         livenessProbe:
           httpGet:
             path: /health
@@ -81,6 +79,3 @@ spec:
         - name: qbittorrent-downloads
           persistentVolumeClaim:
             claimName: qbittorrent-download-pvc
-        - name: gluetun-config
-          persistentVolumeClaim:
-            claimName: gluetun-pvc
