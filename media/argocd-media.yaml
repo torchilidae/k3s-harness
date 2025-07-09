@@ -13,6 +13,9 @@ spec:
       - name: k3s-media-emby
         path: media/emby
         namespace: emby
+      - name: k3s-media-jellyfin
+        path: media/jellyfin
+        namespace: jellyfin
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent

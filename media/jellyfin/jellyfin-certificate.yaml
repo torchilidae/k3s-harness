@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: jellyfin-internal-certificate
+  namespace: jellyfin
+spec:
+  secretName: jellyfin-internal-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  commonName: ltc.tsphotoclicks.net
+  dnsNames:
+    - "ltc.tsphotoclicks.net"
+    - "*.ltc.tsphotoclicks.net"
