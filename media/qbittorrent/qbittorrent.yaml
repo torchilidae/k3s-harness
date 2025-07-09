@@ -7,6 +7,8 @@ metadata:
     app: qbittorrent
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: qbittorrent
@@ -67,7 +69,7 @@ spec:
             command:
               - sh
               - -c
-              - ping -c 1 www.google.com || exit 1
+              - ping -c 1 1.1.1.1 || exit 1
           initialDelaySeconds: 30
           periodSeconds: 60
           timeoutSeconds: 20
