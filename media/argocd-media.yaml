@@ -19,6 +19,9 @@ spec:
       - name: k3s-media-jellyseerr
         path: media/jellyseerr
         namespace: jellyseerr
+      - name: k3s-media-prowlarr
+        path: media/prowlarr
+        namespace: prowlarr
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent
