@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyseerr
+  namespace: jellyseerr
+  labels:
+    app: jellyseerr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: jellyseerr
+  template:
+    metadata:
+      labels:
+        app: jellyseerr
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: jellyseerr
+        image: fallenbagel/jellyseerr:2.7.0
+        ports:
+          - containerPort: 5055
+        volumeMounts:
+          - name: jellyseerr-config
+            mountPath: /config
+          - name: jellyseerr-tvshows
+            mountPath: /tvshow
+          - name: jellyseerr-movies
+            mountPath: /movie
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 300m
+            memory: 512Mi
+      volumes:
+        - name: jellyseerr-config
+          persistentVolumeClaim:
+            claimName: jellyseerr-config-pvc
+        - name: jellyseerr-tvshows
+          persistentVolumeClaim:
+            claimName: jellyseerr-tvshows-pvc
+        - name: jellyseerr-movies
+          persistentVolumeClaim:
+            claimName: jellyseerr-movies-pvc
