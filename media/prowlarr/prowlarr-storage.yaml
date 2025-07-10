@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: bazarr-pvc
-  namespace: bazarr
+  name: prowlarr-pvc
+  namespace: prowlarr
 spec:
   accessModes:
     - ReadWriteOnce
