@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - bazarr.yaml
-  - bazarr-certificate.yaml
-  - bazarr-ingressroute.yaml
-  - bazarr-storage.yaml
+  - prowlarr.yaml
+  - prowlarr-certificate.yaml
+  - prowlarr-ingressroute.yaml
+  - prowlarr-storage.yaml
