@@ -21,9 +21,9 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: prowlarr
-        image: linuxserver/bazarr:1.5.2
+        image: linuxserver/prowlarr:1.37.0
         ports:
-          - containerPort: 6767
+          - containerPort: 9696
         volumeMounts:
           - name: prowlarr-config
             mountPath: /config
