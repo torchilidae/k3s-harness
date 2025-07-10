@@ -3098,7 +3098,7 @@ metadata:
     
   name: kubernetes-dashboard-csrf
 data:
-  private.key: "bTBjWEZDWkxuWEN2Rm5VcytkVUJMczlEaG50U1VMOUE4QncyOHVLdGphd2NDTHFGc0QrZmxUSkplaTV6d1lYQks2S3FBYVlGRUFmbHQzeWFEVkREMHBjelh0WkZOTTdkWlJtTXNnR1dEejU4TzJPV3B5RENicTRnRTJTWStjQkxZSGl0eWVuaFp4RE1hWWo1YlhZcXRPRENET1FpSitNVXd6cFdTWkVpWk83Z0djSDQrTE1aeVpZWVpmdkRNVjJWZjh5ZmJtSGFUNFlUMTdUdTRhb1lUbmhzS1BzZEVYaUI1ajdwdVZYdlpId0V1Qkh6RXpya0NscEtPUVFPMXNwUTdqTE1HTUkzaVhwN1ZFWGFjL1htNmF0TklYUndxQUxhOTQxWWhrY3RJOWF4bHVCUzlKclVPZ2NKclVuSEtJdHZNSGV6T3hweElkdnlPaHBxN1VCMWhnPT0="
+  private.key: "L1BkRWVHckZYK1ZrOTV3L3hzemIxQUN0TFN5cm1SMm90cC9WYnA3bUU5R2lIMWRkL1hvc2N1RjB0OG80OEplYkNOc2hPQkdxV09lYllYbXNMSGg2cXJoc1I4NlJZUjI3MUttV3VDVDc0N3B0WndSQUM3azE3ZmpjdHk3eCtJeDVKM0tkMGkxdGVMYUFsUlptZXF0YXpab1QyQTA5OUxrT2o1SDlWVWtKY0tLRldCdnBqbUk1YVNxSE5MYXFBdVJrNXREZE1ObHR0Z1RERklPN2FwSDk0aktCTHY1eFlpOW91cmtOUWVydld6MlZLcXBtY2E0ZDRHL0x2L3BibWpvdFNucFFHT0dpQUdUaERKZDRjK0djNTRwU0UxNS83aXl4WVFlL0hvdHB3Rlo2ejZJaEowejMxN090cVRudEVOYjRiOGJGbXhJTFlHcGxpa2xIYWU5TWdBPT0="
 ---
 # Source: kubernetes-dashboard/templates/config/gateway.yaml
 # Copyright 2017 The Kubernetes Authors.
@@ -3928,7 +3928,7 @@ spec:
         app.kubernetes.io/version: 1.13.0
         app.kubernetes.io/component: api
       annotations:
-        checksum/config: 75306ae4bf40620c3de31cda5a04bb1e972592aa8337df2090f696fd1c09db7c
+        checksum/config: adfe2338797cb8bf22b270eb0df85990a5778cf62df1d4ddf78f8a0628fb76c0
     spec:
       containers:
         - name: kubernetes-dashboard-api
@@ -4041,7 +4041,7 @@ spec:
         app.kubernetes.io/version: 1.3.0
         app.kubernetes.io/component: auth
       annotations:
-        checksum/config: 0a9f17a0ee58d0e930f226d10ec713998a112be3726601211c50b0812cfc8625
+        checksum/config: f211b449ec423f7e983e4d20d1f1c21f685d4a0a40ef72291c98c2ee5c0e3402
     spec:
       containers:
         - name: kubernetes-dashboard-auth
