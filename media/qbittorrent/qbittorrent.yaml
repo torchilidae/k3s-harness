@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: qbittorrent
-  namespace: gluetun
+  namespace: qbittorrent
   labels:
     app: qbittorrent
 spec:
@@ -40,4 +40,4 @@ spec:
             claimName: qbittorrent-pvc
         - name: qbittorrent-downloads
           persistentVolumeClaim:
-            claimName: download-pvc
+            claimName: qbittorrent-download-pvc

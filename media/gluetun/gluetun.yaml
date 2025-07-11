@@ -20,9 +20,18 @@ spec:
       containers:
       - name: gluetun
         image: qmcgaw/gluetun
+        ports:
+        - containerPort: 1080
+        - containerPort: 8000
         env:
         - name: VPN_TYPE
           value: "openvpn"
+        - name: VPN_SERVICE_PROVIDER
+          value: "nordvpn"
+        - name: SERVER_COUNTRIES
+          value: "United States"
+        - name: UPDATER_PERIOD
+          value: "24h"
         - name: OPENVPN_USER
           valueFrom:
             secretKeyRef:
@@ -33,13 +42,27 @@ spec:
             secretKeyRef:
               name: openvpn-secrets
               key: OPENVPN_PASSWORD
-        - name: UPDATER_PERIOD
-          value: "24h"
-        - name: SERVER_COUNTRIES
-          value: "United States"
-        - name: VPN_SERVICE_PROVIDER
-          value: "nordvpn"
         securityContext:
           capabilities:
             add:
-              - NET_ADMIN
+            - NET_ADMIN
+          readOnlyRootFilesystem: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
