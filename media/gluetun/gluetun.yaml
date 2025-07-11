@@ -36,11 +36,7 @@ spec:
           value: "24h"
         - name: SHADOWSOCKS
           value: "on"
-        - name: SHADOWSOCKS_LOG
-          value: "on"
         - name: HTTPPROXY
-          value: "on"
-        - name: "HTTPPROXY_LOG"
           value: "on"
         - name: OPENVPN_USER
           valueFrom:
