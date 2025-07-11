@@ -15,9 +15,6 @@ spec:
       - namespaceSelector:
           matchLabels:
             name: traefik
-        podSelector:
-          matchLabels:
-            app: traefik
       ports:
         - protocol: TCP
           port: 8080
@@ -26,9 +23,6 @@ spec:
       - namespaceSelector:
           matchLabels:
             name: gluetun
-        podSelector:
-          matchLabels:
-            app: gluetun
       ports:
         - protocol: TCP
           port: 1080
