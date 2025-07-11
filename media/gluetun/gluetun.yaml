@@ -23,7 +23,7 @@ spec:
       - name: gluetun
         image: qmcgaw/gluetun
         ports:
-        - containerPort: 1080
+        - containerPort: 8388
         - containerPort: 8000
         env:
         - name: VPN_TYPE

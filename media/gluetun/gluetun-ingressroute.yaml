@@ -8,5 +8,5 @@ spec:
     app: gluetun
   ports:
     - name: socks5
-      port: 1080
-      targetPort: 1080
+      port: 8388
+      targetPort: 8388
