@@ -14,7 +14,10 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            name: traefik
+            kubernetes.io/metadata.name: traefik
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/name: traefik
       ports:
         - protocol: TCP
           port: 8080
@@ -22,7 +25,10 @@ spec:
     - to:
       - namespaceSelector:
           matchLabels:
-            name: gluetun
+            kubernetes.io/metadata.name: gluetun
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: gluetun
       ports:
         - protocol: TCP
           port: 1080
