@@ -7,24 +7,12 @@ spec:
   generators:
   - list:
       elements:
-      - name: k3s-media-bazarr
-        path: media/bazarr
-        namespace: bazarr
-      - name: k3s-media-emby
-        path: media/emby
-        namespace: emby
-      - name: k3s-media-jellyfin
-        path: media/jellyfin
-        namespace: jellyfin
-      - name: k3s-media-jellyseerr
-        path: media/jellyseerr
-        namespace: jellyseerr
-      - name: k3s-media-prowlarr
-        path: media/prowlarr
-        namespace: prowlarr
+      - name: k3s-media-gluetun
+        path: media/gluetun
+        namespace: gluetun
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
-        namespace: qbittorrent
+        namespace: gluetun
   template:
     metadata:
       name: '{{name}}'

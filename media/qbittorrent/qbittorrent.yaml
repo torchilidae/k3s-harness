@@ -2,14 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: qbittorrent
-  namespace: qbittorrent
+  namespace: gluetun
   labels:
     app: qbittorrent
 spec:
   replicas: 1
   revisionHistoryLimit: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app: qbittorrent
@@ -36,36 +34,10 @@ spec:
           limits:
             cpu: 750m
             memory: 2Gi
-
-      - name: gluetun
-        image: qmcgaw/gluetun
-        env:
-        - name: VPN_TYPE
-          value: "openvpn"
-        - name: OPENVPN_USER
-          valueFrom:
-            secretKeyRef:
-              name: openvpn-secrets
-              key: OPENVPN_USER
-        - name: OPENVPN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: openvpn-secrets
-              key: OPENVPN_PASSWORD
-        - name: UPDATER_PERIOD
-          value: "24h"
-        - name: SERVER_COUNTRIES
-          value: "United States"
-        - name: VPN_SERVICE_PROVIDER
-          value: "nordvpn"
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
       volumes:
         - name: qbittorrent-config
           persistentVolumeClaim:
             claimName: qbittorrent-pvc
         - name: qbittorrent-downloads
           persistentVolumeClaim:
-            claimName: qbittorrent-download-pvc
+            claimName: download-pvc

@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: qbittorrent-ingressroute
-  namespace: qbittorrent
+  namespace: gluetun
 spec:
   entryPoints:
     - websecure
@@ -13,13 +13,13 @@ spec:
         - name: qbittorrent
           port: 8080
   tls:
-    secretName: qbittorrent-internal-secret
+    secretName: gluetun-internal-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: qbittorrent
-  namespace: qbittorrent
+  namespace: gluetun
 spec:
   selector:
     app: qbittorrent
