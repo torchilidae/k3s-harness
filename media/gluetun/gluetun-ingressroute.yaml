@@ -10,3 +10,6 @@ spec:
     - name: socks5
       port: 8388
       targetPort: 8388
+    - name: http
+      port: 8888
+      targetPort: 8888

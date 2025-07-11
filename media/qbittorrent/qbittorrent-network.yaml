@@ -28,7 +28,7 @@ spec:
             kubernetes.io/metadata.name: gluetun
       ports:
         - protocol: TCP
-          port: 8388
+          port: 8888
     - to:
       - namespaceSelector: {}
       ports:

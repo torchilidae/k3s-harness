@@ -24,6 +24,7 @@ spec:
         image: qmcgaw/gluetun
         ports:
         - containerPort: 8388
+        - containerPort: 8888
         env:
         - name: VPN_TYPE
           value: "openvpn"
