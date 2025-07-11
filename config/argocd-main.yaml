@@ -13,8 +13,8 @@ spec:
         path: monitor
       - name: k3s-main-security
         path: security
-      # - name: k3s-main-media
-      #   path: media
+      - name: k3s-main-media
+        path: media
   template:
     metadata:
       name: '{{name}}'
