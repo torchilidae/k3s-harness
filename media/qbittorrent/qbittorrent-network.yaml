@@ -26,9 +26,6 @@ spec:
       - namespaceSelector:
           matchLabels:
             kubernetes.io/metadata.name: gluetun
-          podSelector:
-            matchLabels:
-              app: gluetun
       ports:
         - protocol: TCP
           port: 8388
