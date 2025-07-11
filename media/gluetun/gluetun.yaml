@@ -46,7 +46,6 @@ spec:
           capabilities:
             add:
             - NET_ADMIN
-          readOnlyRootFilesystem: true
         resources:
           requests:
             cpu: 100m
