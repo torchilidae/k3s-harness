@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: sonarr
+  labels:
+    app: sonarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: sonarr
+        image: linuxserver/sonarr
+        ports:
+          - containerPort: 8989
+        volumeMounts:
+          - name: sonarr-config
+            mountPath: /config
+          - name: sonarr-downloads
+            mountPath: /downloads
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 750m
+            memory: 2Gi
+      volumes:
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-pvc
+        - name: sonarr-downloads
+          persistentVolumeClaim:
+            claimName: sonarr-download-pvc

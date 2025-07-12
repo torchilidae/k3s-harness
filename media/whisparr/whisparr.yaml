@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sabnzbd
-  namespace: sabnzbd
+  name: whisparr
+  namespace: whisparr
   labels:
-    app: sabnzbd
+    app: whisparr
 spec:
   replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: sabnzbd
+      app: whisparr
   template:
     metadata:
       labels:
-        app: sabnzbd
+        app: whisparr
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: sabnzbd
-        image: linuxserver/sabnzbd
+      - name: whisparr
+        image: hotio/whisparr
         ports:
-          - containerPort: 8080
+          - containerPort: 6969
         volumeMounts:
-          - name: sabnzbd-config
+          - name: whisparr-config
             mountPath: /config
-          - name: sabnzbd-downloads
+          - name: whisparr-downloads
             mountPath: /downloads
         resources:
           requests:
@@ -35,9 +35,9 @@ spec:
             cpu: 750m
             memory: 2Gi
       volumes:
-        - name: sabnzbd-config
+        - name: whisparr-config
           persistentVolumeClaim:
-            claimName: sabnzbd-pvc
-        - name: sabnzbd-downloads
+            claimName: whisparr-pvc
+        - name: whisparr-downloads
           persistentVolumeClaim:
-            claimName: sabnzbd-download-pvc
+            claimName: whisparr-download-pvc

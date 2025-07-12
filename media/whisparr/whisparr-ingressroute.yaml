@@ -1,31 +1,31 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: sabnzbd-ingressroute
-  namespace: sabnzbd
+  name: whisparr-ingressroute
+  namespace: whisparr
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`sabnzbd.ltc.tsphotoclicks.net`)
+      match: Host(`whisparr.ltc.tsphotoclicks.net`)
       middlewares:
         - name: authentik-middleware
           namespace: authentik
       services:
-        - name: sabnzbd
-          port: 8080
+        - name: whisparr
+          port: 6969
   tls:
     secretName: sabnzbd-internal-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sabnzbd
-  namespace: sabnzbd
+  name: whisparr
+  namespace: whisparr
 spec:
   selector:
-    app: sabnzbd
+    app: whisparr
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 6969
+      targetPort: 6969
