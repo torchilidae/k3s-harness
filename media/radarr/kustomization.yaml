@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - radarr.yaml
+  - radarr-certificate.yaml
+  - radarr-ingressroute.yaml
+  - radarr-network.yaml
+  - radarr-storage.yaml

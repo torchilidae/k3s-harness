@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: radarr
+  labels:
+    app: radarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: radarr
+        image: linuxserver/qbittorrent
+        ports:
+          - containerPort: 7878
+        volumeMounts:
+          - name: radarr-config
+            mountPath: /config
+          - name: radarr-downloads
+            mountPath: /downloads
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 750m
+            memory: 2Gi
+      volumes:
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-pvc
+        - name: radarr-downloads
+          persistentVolumeClaim:
+            claimName: radarr-download-pvc
