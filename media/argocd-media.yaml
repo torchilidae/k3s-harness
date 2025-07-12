@@ -31,6 +31,9 @@ spec:
       - name: k3s-media-radarr
         path: media/radarr
         namespace: radarr
+      - name: k3s-media-sabnzbd
+        path: media/sabnzbd
+        namespace: sabnzbd
   template:
     metadata:
       name: '{{name}}'

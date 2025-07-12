@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sabnzbd-ingressroute
+  namespace: sabnzbd
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`sabnzbd.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
+      services:
+        - name: sabnzbd
+          port: 8080
+  tls:
+    secretName: sabnzbd-internal-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sabnzbd
+  namespace: sabnzbd
+spec:
+  selector:
+    app: sabnzbd
+  ports:
+    - port: 8080
+      targetPort: 8080

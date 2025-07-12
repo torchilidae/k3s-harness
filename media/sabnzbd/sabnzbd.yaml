@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabnzbd
+  namespace: sabnzbd
+  labels:
+    app: sabnzbd
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: sabnzbd
+  template:
+    metadata:
+      labels:
+        app: sabnzbd
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: sabnzbd
+        image: linuxserver/sabnzbd
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+          - name: sabnzbd-config
+            mountPath: /config
+          - name: sabnzbd-downloads
+            mountPath: /downloads
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 750m
+            memory: 2Gi
+      volumes:
+        - name: sabnzbd-config
+          persistentVolumeClaim:
+            claimName: sabnzbd-pvc
+        - name: sabnzbd-downloads
+          persistentVolumeClaim:
+            claimName: sabnzbd-download-pvc
