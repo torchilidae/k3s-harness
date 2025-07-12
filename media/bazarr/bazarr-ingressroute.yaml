@@ -9,6 +9,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`bazarr.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
       services:
         - name: bazarr
           port: 6767

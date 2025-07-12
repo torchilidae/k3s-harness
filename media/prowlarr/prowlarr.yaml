@@ -34,32 +34,6 @@ spec:
           limits:
             cpu: 300m
             memory: 512Mi
-
-      - name: gluetun
-        image: qmcgaw/gluetun:v3.40.0
-        env:
-        - name: VPN_TYPE
-          value: "openvpn"
-        - name: OPENVPN_USER
-          valueFrom:
-            secretKeyRef:
-              name: openvpn-secrets
-              key: OPENVPN_USER
-        - name: OPENVPN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: openvpn-secrets
-              key: OPENVPN_PASSWORD
-        - name: UPDATER_PERIOD
-          value: "24h"
-        - name: SERVER_COUNTRIES
-          value: "United States"
-        - name: VPN_SERVICE_PROVIDER
-          value: "nordvpn"
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
       volumes:
         - name: prowlarr-config
           persistentVolumeClaim:
