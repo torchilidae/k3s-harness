@@ -7,14 +7,16 @@ spec:
   generators:
   - list:
       elements:
-      - name: k3s-main-network
-        path: network
-      - name: k3s-main-monitor
-        path: monitor
-      - name: k3s-main-security
-        path: security
       - name: k3s-main-media
         path: media
+      - name: k3s-main-monitor
+        path: monitor
+      - name: k3s-main-network
+        path: network
+      - name: k3s-main-security
+        path: security
+      - name: k3s-main-storage
+        path: storage
   template:
     metadata:
       name: '{{name}}'
