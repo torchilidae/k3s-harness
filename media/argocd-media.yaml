@@ -7,12 +7,15 @@ spec:
   generators:
   - list:
       elements:
+      - name: k3s-media-bazarr
+        path: media/bazarr
+        namespace: bazarr
       - name: k3s-media-gluetun
         path: media/gluetun
         namespace: gluetun
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
-        namespace: gluetun
+        namespace: qbittorrent
   template:
     metadata:
       name: '{{name}}'
