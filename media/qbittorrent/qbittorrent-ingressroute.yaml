@@ -9,6 +9,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`qbittorrent.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
       services:
         - name: qbittorrent
           port: 8080
