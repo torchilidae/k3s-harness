@@ -6,7 +6,7 @@
   "kubernetes": {
     "fileMatch": ["\\.ya?ml$"]
   },
-    "helm-values": {
+    "argocd": {
     "fileMatch": [".*-helm\\.ya?ml$"]
   }
 }
