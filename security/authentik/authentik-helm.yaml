@@ -9,22 +9,13 @@ spec:
   source:
     repoURL: https://charts.goauthentik.io
     chart: authentik
-    targetRevision: 2025.6
+    targetRevision: 2025.6.3
     helm:
       releaseName: authentik
       valuesFrom:
         - secretRef:
             name: authentik-secret
-          valuesKey: AUTHENTIK_SECRET_KEY
-          targetPath: authentik.secret_key
-        - secretRef:
-            name: authentik-secret
-          valuesKey: AUTHENTIK_POSTGRES_PASSWORD
-          targetPath: authentik.postgresql.password
-        - secretRef:
-            name: authentik-secret
-          valuesKey: AUTHENTIK_POSTGRES_PASSWORD
-          targetPath: postgresql.auth.password
+            valuesKey: authentik-data
       values: |
         server:
           ingress:
