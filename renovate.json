@@ -5,5 +5,8 @@
   ],
   "kubernetes": {
     "fileMatch": ["\\.ya?ml$"]
+  },
+    "helm-values": {
+    "fileMatch": [".*-helm\\.ya?ml$"]
   }
 }
