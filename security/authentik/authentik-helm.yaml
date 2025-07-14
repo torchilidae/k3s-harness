@@ -12,18 +12,20 @@ spec:
     targetRevision: 2025.6.3
     helm:
       releaseName: authentik
-      valuesFrom:
-        - secretRef:
-            name: authentik-secret
-            valuesKey: authentik-data
-      values: |
+      valuesObject:
+        authentik:
+          secret_key: ""
+          postgresql:
+            password: ""
+
         server:
           ingress:
-            enabled: true
+            # Specify kubernetes ingress controller class name
             ingressClassName: traefik
+            enabled: true
             hosts:
               - authentik.ltc.tsphotoclicks.net
-            tls:    
+            tls:
               - secretName: authentik-internal-secret
                 hosts:
                   - "ltc.tsphotoclicks.net"
@@ -31,8 +33,11 @@ spec:
 
         postgresql:
           enabled: true
+          auth:
+            password: ""
         redis:
           enabled: true
+
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik

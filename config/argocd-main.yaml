@@ -13,8 +13,8 @@ spec:
         path: monitor
       - name: k3s-main-network
         path: network
-      - name: k3s-main-security
-        path: security
+      # - name: k3s-main-security
+      #   path: security
       - name: k3s-main-storage
         path: storage
   template:
