@@ -7,6 +7,9 @@ spec:
   generators:
   - list:
       elements:
+      - name: k3s-media-gluetun
+        path: media/gluetun
+        namespace: gluetun
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent
