@@ -16,6 +16,9 @@ spec:
       - name: k3s-media-gluetun
         path: media/gluetun
         namespace: gluetun
+      - name: k3s-media-jellyfin
+        path: media/jellyfin
+        namespace: jellyfin
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent
