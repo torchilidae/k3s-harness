@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authentik-postgresql-pvc
+  namespace: authentik
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+  volumeName: authentik-postgresql-pv
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authentik-redis-pvc
+  namespace: authentik
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+  volumeName: authentik-redis-pv
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: authentik-postgresql-pv
+spec:
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: authentik-postgresql
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: authentik-redis-pv
+spec:
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: authentik-redis
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: authentik-postgresql
+  namespace: longhorn-system
+spec:
+  size: "8589934592"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: authentik-redis
+  namespace: longhorn-system
+spec:
+  size: "8589934592"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx

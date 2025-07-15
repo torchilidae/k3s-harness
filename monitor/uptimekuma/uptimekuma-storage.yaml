@@ -9,4 +9,33 @@ spec:
   resources:
     requests:
       storage: 2Gi
+    volumeName: uptimekuma-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: uptimekuma-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: uptimekuma
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: uptimekuma
+  namespace: longhorn-system
+spec:
+  size: "2147483648"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
