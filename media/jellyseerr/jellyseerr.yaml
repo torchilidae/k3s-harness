@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: jellyseerr-config
           persistentVolumeClaim:
-            claimName: jellyseerr-config-pvc
+            claimName: jellyseerr-pvc
         - name: jellyseerr-tvshows
           persistentVolumeClaim:
             claimName: jellyseerr-tvshows-pvc
