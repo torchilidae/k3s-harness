@@ -1,4 +1,18 @@
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-tvshows-pvc
+  namespace: jellyfin
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  volumeName: jellyfin-tvshows-pv
+  storageClassName: ""
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: jellyfin-tvshows-pv
@@ -11,6 +25,20 @@ spec:
     server: ds.tsphotoclicks.net
     path: /volume1/video/TVShow
   persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-movies-pvc
+  namespace: jellyfin
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  volumeName: jellyfin-movies-pv
+  storageClassName: ""
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -29,7 +57,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jellyfin-config-pvc
+  name: jellyfin-pvc
   namespace: jellyfin
 spec:
   accessModes:
@@ -37,7 +65,36 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  volumeName: jellyfin-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jellyfin-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: jellyfin
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: jellyfin
+  namespace: longhorn-system
+spec:
+  size: "1073741824"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -50,32 +107,33 @@ spec:
   resources:
     requests:
       storage: 2Gi
+  volumeName: jellyfin-cache-pv
   storageClassName: longhorn
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
-  name: jellyfin-tvshows-pvc
-  namespace: jellyfin
+  name: jellyfin-cache-pv
 spec:
+  capacity:
+    storage: 2Gi
   accessModes:
     - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Ti
-  volumeName: jellyfin-tvshows-pv
-  storageClassName: ""
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: jellyfin-cache
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
+apiVersion: longhorn.io/v1beta2
+kind: Volume
 metadata:
-  name: jellyfin-movies-pvc
-  namespace: jellyfin
+  name: jellyfin-cache
+  namespace: longhorn-system
 spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Ti
-  volumeName: jellyfin-movies-pv
-  storageClassName: ""
+  size: "2147483648"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
