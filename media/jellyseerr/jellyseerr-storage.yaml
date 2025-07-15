@@ -13,6 +13,20 @@ spec:
   persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyseerr-tvshows-pvc
+  namespace: jellyseerr
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  volumeName: jellyseerr-tvshows-pv
+  storageClassName: ""
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: jellyseerr-movies-pv
@@ -29,33 +43,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jellyseerr-config-pvc
-  namespace: jellyseerr
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: longhorn
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jellyseerr-tvshows-pvc
-  namespace: jellyseerr
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Ti
-  volumeName: jellyseerr-tvshows-pv
-  storageClassName: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: jellyseerr-movies-pvc
   namespace: jellyseerr
 spec:
@@ -66,3 +53,45 @@ spec:
       storage: 1Ti
   volumeName: jellyseerr-movies-pv
   storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyseerr-pvc
+  namespace: jellyseerr
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: jellyseerr-pv
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jellyseerr-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: jellyseerr
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: jellyseerr
+  namespace: longhorn-system
+spec:
+  size: "1073741824"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
