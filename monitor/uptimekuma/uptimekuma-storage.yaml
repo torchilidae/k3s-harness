@@ -9,7 +9,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
-    volumeName: uptimekuma-pv
+  volumeName: uptimekuma-pv
   storageClassName: longhorn
 ---
 apiVersion: v1
