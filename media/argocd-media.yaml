@@ -19,6 +19,9 @@ spec:
       - name: k3s-media-jellyfin
         path: media/jellyfin
         namespace: jellyfin
+      - name: k3s-media-jellyseerr
+        path: media/jellyseerr
+        namespace: jellyseerr
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent
