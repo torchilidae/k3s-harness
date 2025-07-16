@@ -9,4 +9,33 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  volumeName: prowlarr-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prowlarr-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: prowlarr
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: prowlarr
+  namespace: longhorn-system
+spec:
+  size: "1073741824"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
