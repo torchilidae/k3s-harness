@@ -34,6 +34,9 @@ spec:
       - name: k3s-media-sabnzbd
         path: media/sabnzbd
         namespace: sabnzbd
+      - name: k3s-media-sonarr
+        path: media/sonarr
+        namespace: sonarr
   template:
     metadata:
       name: '{{name}}'

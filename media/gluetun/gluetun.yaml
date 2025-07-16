@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: gluetun
-        image: qmcgaw/gluetun
+        image: qmcgaw/gluetun:v3.40.0
         ports:
         - containerPort: 8388
         - containerPort: 8888
