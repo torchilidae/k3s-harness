@@ -28,6 +28,9 @@ spec:
       - name: k3s-media-qbittorrent
         path: media/qbittorrent
         namespace: qbittorrent
+      - name: k3s-media-radarr
+        path: media/radarr
+        namespace: radarr
   template:
     metadata:
       name: '{{name}}'

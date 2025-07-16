@@ -9,7 +9,36 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  volumeName: radarr-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: radarr-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: radarr
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: radarr
+  namespace: longhorn-system
+spec:
+  size: "1073741824"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -22,4 +51,49 @@ spec:
   resources:
     requests:
       storage: 30Gi
+  volumeName: radarr-download-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: radarr-download-pv
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: downloads
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: radarr-movies-pvc
+  namespace: radarr
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  volumeName: radarr-movies-pv
+  storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: radarr-movies-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: ds.tsphotoclicks.net
+    path: /volume1/video/Movie
+  persistentVolumeReclaimPolicy: Retain
