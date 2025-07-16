@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: radarr
-        image: linuxserver/qbittorrent
+        image: linuxserver/radarr:5.26.2
         ports:
           - containerPort: 7878
         volumeMounts:
