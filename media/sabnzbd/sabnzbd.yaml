@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: sabnzbd
-        image: linuxserver/sabnzbd:4.5.1
+        image: linuxserver/sabnzbd:4.5.2
         ports:
           - containerPort: 8080
         volumeMounts:
