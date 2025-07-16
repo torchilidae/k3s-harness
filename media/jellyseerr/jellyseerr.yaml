@@ -26,7 +26,7 @@ spec:
           - containerPort: 5055
         volumeMounts:
           - name: jellyseerr-config
-            mountPath: /config
+            mountPath: /app/config
           - name: jellyseerr-tvshows
             mountPath: /tvshow
           - name: jellyseerr-movies
