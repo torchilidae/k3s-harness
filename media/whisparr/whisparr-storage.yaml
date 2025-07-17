@@ -9,7 +9,36 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  volumeName: whisparr-pv
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: whisparr-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: whisparr
+---
+apiVersion: longhorn.io/v1beta2
+kind: Volume
+metadata:
+  name: whisparr
+  namespace: longhorn-system
+spec:
+  size: "1073741824"
+  numberOfReplicas: 3
+  staleReplicaTimeout: 30
+  frontend: blockdev
+  accessMode: rwx
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,3 +52,19 @@ spec:
     requests:
       storage: 30Gi
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: whisparr-download-pv
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: downloads
