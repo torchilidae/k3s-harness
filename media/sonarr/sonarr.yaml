@@ -45,4 +45,4 @@ spec:
             claimName: sonarr-download-pvc
         - name: sonarr-tvshows
           persistentVolumeClaim:
-            claimName: sonarr-tvshow-pvc
+            claimName: sonarr-tvshows-pvc
