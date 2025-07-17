@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nzbget-ingressroute
+  namespace: nzbget
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`nzbget.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
+      services:
+        - name: nzbget
+          port: 6789
+  tls:
+    secretName: nzbget-internal-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nzbget
+  namespace: nzbget
+spec:
+  selector:
+    app: nzbget
+  ports:
+    - port: 6789
+      targetPort: 6789
