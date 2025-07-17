@@ -29,6 +29,8 @@ spec:
             mountPath: /tv
           - name: bazarr-movies
             mountPath: /movies
+          - name: bazarr-download
+            mountPath: /downloads
         resources:
           requests:
             cpu: 50m
@@ -46,3 +48,6 @@ spec:
         - name: bazarr-movies
           persistentVolumeClaim:
             claimName: bazarr-movies-pvc
+        - name: bazarr-download
+          persistentVolumeClaim:
+            claimName: bazarr-download-pvc
