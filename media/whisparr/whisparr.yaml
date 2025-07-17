@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: whisparr
-        image: hotio/whisparr:v3-3.0.0.1163
+        image: ghcr.io/hotio/whisparr:v3-3.0.0.1163
         ports:
           - containerPort: 6969
         volumeMounts:
