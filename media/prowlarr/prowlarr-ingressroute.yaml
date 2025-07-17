@@ -9,6 +9,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`prowlarr.ltc.tsphotoclicks.net`)
+      middlewares:
+        - name: authentik-middleware
+          namespace: authentik
       services:
         - name: prowlarr
           port: 9696
