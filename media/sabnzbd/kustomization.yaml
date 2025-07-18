@@ -4,5 +4,4 @@ resources:
   - sabnzbd.yaml
   - sabnzbd-certificate.yaml
   - sabnzbd-ingressroute.yaml
-  - sabnzbd-network.yaml
   - sabnzbd-storage.yaml
