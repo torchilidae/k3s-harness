@@ -49,6 +49,8 @@ spec:
           value: "on"
         - name: HTTPPROXY
           value: "on"
+        - name: DNS_KEEP_NAMESERVER
+          value: "on"
         - name: OPENVPN_USER
           valueFrom:
             secretKeyRef:
