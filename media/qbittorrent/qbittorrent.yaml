@@ -29,11 +29,11 @@ spec:
             mountPath: /downloads
         resources:
           requests:
-            cpu: 250m
+            cpu: 300m
             memory: 512Mi
           limits:
-            cpu: 750m
-            memory: 2Gi
+            cpu: 1000m
+            memory: 1Gi
       volumes:
         - name: qbittorrent-config
           persistentVolumeClaim:

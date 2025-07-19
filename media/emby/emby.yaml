@@ -33,10 +33,10 @@ spec:
             mountPath: /movie
         resources:
           requests:
-            cpu: 250m
+            cpu: 200m
             memory: 512Mi
           limits:
-            cpu: 500m
+            cpu: 1000m
             memory: 1Gi
       volumes:
         - name: emby-config

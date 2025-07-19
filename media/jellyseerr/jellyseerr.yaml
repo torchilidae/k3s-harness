@@ -34,10 +34,10 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 256Mi
           limits:
-            cpu: 300m
-            memory: 512Mi
+            cpu: 400m
+            memory: 768Mi
       volumes:
         - name: jellyseerr-config
           persistentVolumeClaim:
