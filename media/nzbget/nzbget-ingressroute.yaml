@@ -10,8 +10,8 @@ spec:
     - kind: Rule
       match: Host(`nzbget.ltc.tsphotoclicks.net`)
       middlewares:
-        - name: authentik-middleware
-          namespace: authentik
+#         - name: authentik-middleware
+#           namespace: authentik
       services:
         - name: nzbget
           port: 6789
