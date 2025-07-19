@@ -22,9 +22,6 @@ spec:
       - name: k3s-media-jellyseerr
         path: media/jellyseerr
         namespace: jellyseerr
-      - name: k3s-media-nzbget
-        path: media/nzbget
-        namespace: nzbget
       - name: k3s-media-prowlarr
         path: media/prowlarr
         namespace: prowlarr
