@@ -10,12 +10,15 @@ spec:
       - name: k3s-monitor-grafana
         path: monitor/grafana
         namespace: grafana
-      - name: k3s-monitor-uptimekuma
-        path: monitor/uptimekuma
-        namespace: uptimekuma
       - name: k3s-monitor-kubernetesdashboard
         path: monitor/kubernetes-dashboard
         namespace: kubernetes-dashboard
+      - name: k3s-monitor-prometheus
+        path: monitor/prometheus
+        namespace: prometheus
+      - name: k3s-monitor-uptimekuma
+        path: monitor/uptimekuma
+        namespace: uptimekuma
   template:
     metadata:
       name: '{{name}}'
