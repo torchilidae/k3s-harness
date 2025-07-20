@@ -10,6 +10,9 @@ spec:
       - name: k3s-monitor-grafana
         path: monitor/grafana
         namespace: grafana
+      - name: k3s-monitor-kubestatemetrics
+        path: monitor/kube-state-metrics
+        namespace: kube-state-metrics
       - name: k3s-monitor-kubernetesdashboard
         path: monitor/kubernetes-dashboard
         namespace: kubernetes-dashboard
