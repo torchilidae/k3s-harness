@@ -13,3 +13,5 @@ data:
         metrics_path: /metrics
         static_configs:
           - targets: ['kube-state-metrics.kube-state-metrics.svc.cluster.local:8080']
+            labels:
+              cluster: "my-cluster"
