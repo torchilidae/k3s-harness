@@ -21,7 +21,8 @@ spec:
       - name: radarr
         image: linuxserver/radarr:5.26.2
         ports:
-          - containerPort: 7878
+          - name: http
+            containerPort: 7878
         volumeMounts:
           - name: radarr-config
             mountPath: /config

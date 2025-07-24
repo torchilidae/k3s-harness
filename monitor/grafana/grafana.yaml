@@ -24,7 +24,8 @@ spec:
         - name: grafana
           image: grafana/grafana:11.6.3
           ports:
-          - containerPort: 3000
+          - name: http
+            containerPort: 3000
           env:
             - name: GF_SERVER_DOMAIN
               value: "grafana.ltc.tsphotoclicks.net"

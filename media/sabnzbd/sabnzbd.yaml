@@ -21,7 +21,8 @@ spec:
       - name: sabnzbd
         image: linuxserver/sabnzbd:4.5.1
         ports:
-          - containerPort: 8080
+          - name: http
+            containerPort: 8080
         volumeMounts:
           - name: sabnzbd-config
             mountPath: /config

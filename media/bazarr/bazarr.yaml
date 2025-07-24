@@ -21,7 +21,8 @@ spec:
       - name: bazarr
         image: linuxserver/bazarr:1.5.2
         ports:
-          - containerPort: 6767
+          - name: http
+            containerPort: 6767
         volumeMounts:
           - name: bazarr-config
             mountPath: /config

@@ -21,7 +21,8 @@ spec:
       - name: sonarr
         image: linuxserver/sonarr:4.0.15
         ports:
-          - containerPort: 8989
+          - name: http
+            containerPort: 8989
         volumeMounts:
           - name: sonarr-config
             mountPath: /config

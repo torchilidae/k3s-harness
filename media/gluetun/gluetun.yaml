@@ -23,8 +23,10 @@ spec:
       - name: gluetun
         image: qmcgaw/gluetun:v3.40.0
         ports:
-        - containerPort: 8388
-        - containerPort: 8888
+        - name: http
+          containerPort: 8388
+        - name: shadowsocks
+          containerPort: 8888
         env:
         - name: VPN_TYPE
           value: "openvpn"

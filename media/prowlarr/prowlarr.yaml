@@ -23,7 +23,8 @@ spec:
       - name: prowlarr
         image: linuxserver/prowlarr:1.37.0
         ports:
-          - containerPort: 9696
+          - name: http
+            containerPort: 9696
         volumeMounts:
           - name: prowlarr-config
             mountPath: /config

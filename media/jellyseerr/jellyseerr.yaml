@@ -23,7 +23,8 @@ spec:
       - name: jellyseerr
         image: fallenbagel/jellyseerr:2.7.0
         ports:
-          - containerPort: 5055
+          - name: http
+            containerPort: 5055
         volumeMounts:
           - name: jellyseerr-config
             mountPath: /app/config
