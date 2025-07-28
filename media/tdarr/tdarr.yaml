@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr
+  namespace: tdarr
+  labels:
+    app: tdarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: tdarr
+  template:
+    metadata:
+      labels:
+        app: tdarr
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: tdarr
+        image: haveagitgat/tdarr:2.45.01
+        ports:
+        - name: ui-port
+          containerPort: 8265
+        - name: server-port
+          containerPort: 8266
+        envFrom:
+        - configMapRef:
+            name: tdarr-config
+        volumeMounts:
+          - name: tdarr-configs
+            mountPath: /app/configs
+          - name: tdarr-server
+            mountPath: /app/server
+          - name: tdarr-logs
+            mountPath: /app/logs
+          - name: tdarr-media
+            mountPath: /media
+          - name: tdarr-cache
+            mountPath: /temp
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      volumes:
+        - name: tdarr-configs
+          persistentVolumeClaim:
+            claimName: tdarr-pvc
+        - name: tdarr-server
+          persistentVolumeClaim:
+            claimName: tdarr-server-pvc
+        - name: tdarr-logs
+          persistentVolumeClaim:
+            claimName: tdarr-logs-pvc
+        - name: tdarr-media
+          persistentVolumeClaim:
+            claimName: tdarr-media-pvc
+        - name: tdarr-cache
+          persistentVolumeClaim:
+            claimName: tdarr-cache-pvc
