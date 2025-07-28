@@ -90,5 +90,5 @@ spec:
     - ReadWriteMany
   nfs:
     server: ds.tsphotoclicks.net
-    path: /volume1/video/cache
+    path: /volume1/video/Cache
   persistentVolumeReclaimPolicy: Retain
