@@ -37,6 +37,9 @@ spec:
       - name: k3s-media-sonarr
         path: media/sonarr
         namespace: sonarr
+      - name: k3s-media-tdarr
+        path: media/tdarr
+        namespace: tdarr
       - name: k3s-media-whisparr
         path: media/whisparr
         namespace: whisparr
