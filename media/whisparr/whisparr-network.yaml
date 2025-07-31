@@ -18,6 +18,12 @@ spec:
         podSelector:
           matchLabels:
             app.kubernetes.io/name: traefik
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: uptimekuma
+        podSelector:
+          matchLabels:
+            app: uptimekuma
       ports:
         - protocol: TCP
           port: 6969
