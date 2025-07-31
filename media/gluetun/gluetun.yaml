@@ -70,4 +70,4 @@ spec:
       volumes:
         - name: gluetun-config
           configMap:
-            claimName: gluetun-config
+            name: gluetun-config
