@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gluetun-config
+  namespace: gluetun
+data:
+  config.toml: |
+    [[roles]]
+    name = "uptimekuma"
+    routes = ["GET /v1/openvpn/status"]
+    auth = "none"

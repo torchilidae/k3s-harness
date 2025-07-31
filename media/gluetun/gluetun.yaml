@@ -27,6 +27,12 @@ spec:
           containerPort: 8388
         - name: shadowsocks
           containerPort: 8888
+        - name: healthcheck
+          containerPort: 8000
+        volumeMounts:
+        - name: gluetun-config
+          mountPath: /gluetun/auth/config.toml
+          subPath: config.toml
         env:
         - name: VPN_TYPE
           value: "openvpn"
@@ -61,4 +67,7 @@ spec:
           limits:
             cpu: 400m
             memory: 768Mi
-
+      volumes:
+        - name: gluetun-config
+          persistentVolumeClaim:
+            claimName: gluetun-config
