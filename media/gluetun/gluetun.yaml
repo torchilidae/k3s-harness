@@ -69,5 +69,5 @@ spec:
             memory: 768Mi
       volumes:
         - name: gluetun-config
-          persistentVolumeClaim:
+          configMap:
             claimName: gluetun-config
