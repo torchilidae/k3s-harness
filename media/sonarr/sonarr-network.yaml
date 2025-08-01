@@ -30,6 +30,12 @@ spec:
         podSelector:
           matchLabels:
             app: jellyseerr
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: prowlarr
+        podSelector:
+          matchLabels:
+            app: prowlarr
       ports:
         - protocol: TCP
           port: 8989

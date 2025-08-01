@@ -24,6 +24,12 @@ spec:
         podSelector:
           matchLabels:
             app: uptimekuma
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: prowlarr
+        podSelector:
+          matchLabels:
+            app: prowlarr
       ports:
         - protocol: TCP
           port: 6969
