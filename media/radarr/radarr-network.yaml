@@ -24,6 +24,12 @@ spec:
         podSelector:
           matchLabels:
             app: uptimekuma
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: jellyseerr
+        podSelector:
+          matchLabels:
+            app: jellyseerr
       ports:
         - protocol: TCP
           port: 7878
