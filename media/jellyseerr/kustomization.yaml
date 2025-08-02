@@ -4,4 +4,5 @@ resources:
   - jellyseerr.yaml
   - jellyseerr-certificate.yaml
   - jellyseerr-ingressroute.yaml
+  - jellyseerr-namespace.yaml
   - jellyseerr-storage.yaml

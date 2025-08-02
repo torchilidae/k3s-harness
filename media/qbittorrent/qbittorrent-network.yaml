@@ -14,16 +14,10 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            kubernetes.io/metadata.name: traefik
+            media-ns: authorized
         podSelector:
           matchLabels:
-            app.kubernetes.io/name: traefik
-      - namespaceSelector:
-          matchLabels:
-            kubernetes.io/metadata.name: uptimekuma
-        podSelector:
-          matchLabels:
-            app: uptimekuma
+            media-app: authorized
       ports:
         - protocol: TCP
           port: 8080

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: radarr
+  labels:
+    kubernetes.io/metadata.name: radarr
+    media-ns: authorized

@@ -15,7 +15,6 @@ spec:
     metadata:
       labels:
         app: tdarr
-        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

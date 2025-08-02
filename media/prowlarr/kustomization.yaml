@@ -4,5 +4,6 @@ resources:
   - prowlarr.yaml
   - prowlarr-certificate.yaml
   - prowlarr-ingressroute.yaml
+  - prowlarr-namespace.yaml
   - prowlarr-network.yaml
   - prowlarr-storage.yaml

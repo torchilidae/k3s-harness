@@ -4,5 +4,6 @@ resources:
   - whisparr.yaml
   - whisparr-certificate.yaml
   - whisparr-ingressroute.yaml
+  - whisparr-namespace.yaml
   - whisparr-network.yaml
   - whisparr-storage.yaml

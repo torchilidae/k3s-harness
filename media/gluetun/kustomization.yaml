@@ -4,3 +4,4 @@ resources:
   - gluetun.yaml
   - gluetun-config.yaml
   - gluetun-ingressroute.yaml
+  - gluetun-namespace.yaml

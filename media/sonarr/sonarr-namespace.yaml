@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sonarr
+  labels:
+    kubernetes.io/metadata.name: sonarr
+    media-ns: authorized

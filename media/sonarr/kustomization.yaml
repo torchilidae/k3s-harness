@@ -4,5 +4,6 @@ resources:
   - sonarr.yaml
   - sonarr-certificate.yaml
   - sonarr-ingressroute.yaml
+  - sonarr-namespace.yaml
   - sonarr-network.yaml
   - sonarr-storage.yaml

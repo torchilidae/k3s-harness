@@ -4,5 +4,6 @@ resources:
   - radarr.yaml
   - radarr-certificate.yaml
   - radarr-ingressroute.yaml
+  - radarr-namespace.yaml
   - radarr-network.yaml
   - radarr-storage.yaml

@@ -4,4 +4,5 @@ resources:
   - emby.yaml
   - emby-certificate.yaml
   - emby-ingressroute.yaml
+  - emby-namespace.yaml
   - emby-storage.yaml

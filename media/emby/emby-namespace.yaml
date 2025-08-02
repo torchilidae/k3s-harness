@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: emby
+  labels:
+    kubernetes.io/metadata.name: emby
+    media-ns: authorized

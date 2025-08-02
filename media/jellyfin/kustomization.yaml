@@ -4,4 +4,5 @@ resources:
   - jellyfin.yaml
   - jellyfin-certificate.yaml
   - jellyfin-ingressroute.yaml
+  - jellyfin-namespace.yaml
   - jellyfin-storage.yaml

@@ -4,5 +4,6 @@ resources:
   - qbittorrent.yaml
   - qbittorrent-certificate.yaml
   - qbittorrent-ingressroute.yaml
+  - qbittorrent-namespace.yaml
   - qbittorrent-network.yaml
   - qbittorrent-storage.yaml
