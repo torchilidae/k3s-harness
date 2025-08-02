@@ -17,6 +17,7 @@ spec:
     metadata:
       labels:
         app: jellyfin
+        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

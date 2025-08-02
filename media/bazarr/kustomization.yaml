@@ -6,3 +6,5 @@ resources:
   - bazarr-ingressroute.yaml
   - bazarr-network.yaml
   - bazarr-storage.yaml
+patchesStrategicMerge:
+  - bazarr-namespace.yaml

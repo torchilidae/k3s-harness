@@ -17,6 +17,7 @@ spec:
     metadata:
       labels:
         app: emby
+        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

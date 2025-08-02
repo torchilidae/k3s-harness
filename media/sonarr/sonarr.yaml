@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: sonarr
+        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

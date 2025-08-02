@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: bazarr
+        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

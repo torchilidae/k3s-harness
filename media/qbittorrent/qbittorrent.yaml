@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: qbittorrent
+        media-app: authorized
     spec:
       terminationGracePeriodSeconds: 10
       containers:

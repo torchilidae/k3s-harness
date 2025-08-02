@@ -12,7 +12,7 @@ spec:
     targetRevision: 37.0.0
     helm:
       releaseName: traefik
-      values: |
+      valuesObject:
         ingressRoute:
           dashboard:
             enabled: true
@@ -41,6 +41,9 @@ spec:
                 to: websecure
                 scheme: https
                 permanent: true
+        deployment:
+          podLabels:
+            media-app: authorized
 
   destination:
     server: https://kubernetes.default.svc

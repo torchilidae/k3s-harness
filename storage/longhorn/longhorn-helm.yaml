@@ -12,7 +12,7 @@ spec:
     targetRevision: 1.9.1
     helm:
       releaseName: longhorn
-      values: |
+      valuesObject:
         service:
           ui:
             type: ClusterIP
