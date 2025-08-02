@@ -18,9 +18,6 @@ spec:
         podSelector:
           matchLabels:
             media-app: authorized
-        podSelector:
-          matchLabels:
-            app: whisparr
       ports:
         - protocol: TCP
           port: 9696
