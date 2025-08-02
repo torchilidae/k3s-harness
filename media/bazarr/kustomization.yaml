@@ -7,4 +7,7 @@ resources:
   - bazarr-network.yaml
   - bazarr-storage.yaml
 patches:
-  - bazarr-namespace.yaml
+  - path: bazarr-namespace.yaml
+    target:
+      kind: Namespace
+      name: bazarr

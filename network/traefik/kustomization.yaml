@@ -4,4 +4,7 @@ resources:
   - traefik-helm.yaml
   - traefik-certificate.yaml
 patches:
-  - traefik-namespace.yaml
+  - path: traefik-namespace.yaml
+    target:
+      kind: Namespace
+      name: traefik
