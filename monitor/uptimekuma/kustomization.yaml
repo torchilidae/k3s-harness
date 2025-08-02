@@ -4,4 +4,5 @@ resources:
   - uptimekuma.yaml
   - uptimekuma-certificate.yaml
   - uptimekuma-ingressroute.yaml
+  - uptimekuma-namespace.yaml
   - uptimekuma-storage.yaml
