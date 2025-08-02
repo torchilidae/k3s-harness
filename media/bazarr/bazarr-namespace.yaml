@@ -3,4 +3,5 @@ kind: Namespace
 metadata:
   name: bazarr
   labels:
+    kubernetes.io/metadata.name: bazarr
     media-ns: authorized

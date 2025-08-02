@@ -3,8 +3,4 @@ kind: Kustomization
 resources:
   - traefik-helm.yaml
   - traefik-certificate.yaml
-patches:
-  - path: traefik-namespace.yaml
-    target:
-      kind: Namespace
-      name: traefik
+  - traefik-namespace.yaml

@@ -4,10 +4,6 @@ resources:
   - bazarr.yaml
   - bazarr-certificate.yaml
   - bazarr-ingressroute.yaml
+  - bazarr-namespace.yaml
   - bazarr-network.yaml
   - bazarr-storage.yaml
-patches:
-  - path: bazarr-namespace.yaml
-    target:
-      kind: Namespace
-      name: bazarr
