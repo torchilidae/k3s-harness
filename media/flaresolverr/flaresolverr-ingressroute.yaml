@@ -7,5 +7,5 @@ spec:
   selector:
     app: flaresolverr
   ports:
-    - port: 8888
-      targetPort: 8888
+    - port: 8191
+      targetPort: 8191
