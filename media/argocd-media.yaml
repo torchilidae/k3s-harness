@@ -13,6 +13,9 @@ spec:
       - name: k3s-media-emby
         path: media/emby
         namespace: emby
+      - name: k3s-media-flaresolverr
+        path: media/flaresolverr
+        namespace: flaresolverr
       - name: k3s-media-gluetun
         path: media/gluetun
         namespace: gluetun
