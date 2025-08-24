@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: prowlarr
-        image: linuxserver/prowlarr:1.37.0
+        image: linuxserver/prowlarr:2.0.5
         ports:
           - name: http
             containerPort: 9696
