@@ -22,7 +22,7 @@ spec:
         fsGroup: 472
       containers:
         - name: grafana
-          image: grafana/grafana:12.1.0
+          image: grafana/grafana:12.2.0
           ports:
           - name: http
             containerPort: 3000
