@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: jellyseerr
-        image: fallenbagel/jellyseerr:2.7.2
+        image: fallenbagel/jellyseerr:2.7.3
         ports:
           - name: http
             containerPort: 5055
