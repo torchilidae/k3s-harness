@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: tdarr
-        image: haveagitgat/tdarr:2.45.01
+        image: haveagitgat/tdarr:2.49.01
         ports:
         - name: ui-port
           containerPort: 8265
